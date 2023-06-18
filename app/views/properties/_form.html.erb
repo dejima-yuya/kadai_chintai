@@ -36,6 +36,24 @@
     <%= form.text_area :note %>
   </div>
 
+  <%= form.fields_for :closest_stations do |closest_stations_form| %>
+    
+    <div class="closest_stations_form">
+      <%= closest_stations_form.label :路線名 %>
+      <%= closest_stations_form.text_field :route_name %>
+    </div>
+
+    <div class="closest_stations_form">
+      <%= closest_stations_form.label :駅名 %>
+      <%= closest_stations_form.text_field :station_name %>
+    </div>
+
+    <div class="closest_stations_form">
+      <%= closest_stations_form.label :徒歩分数 %>
+      <%= closest_stations_form.number_field :duration %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

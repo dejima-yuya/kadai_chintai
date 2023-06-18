@@ -13,6 +13,7 @@ class PropertiesController < ApplicationController
   # GET /properties/new
   def new
     @property = Property.new
+    2.times { @property.closest_stations.build }
   end
 
   # GET /properties/1/edit
@@ -57,13 +58,13 @@ class PropertiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property
+    @property = Property.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def property_params
-      params.require(:property).permit(:property_name, :price, :address, :age, :note)
-    end
+  # Only allow a list of trusted parameters through.
+  def property_params
+    params.require(:property).permit(:property_name, :price, :address, :age, :note, closest_stations_attributes: [:route_name, :station_name, :duration, :id, :property_id])
+  end
 end
