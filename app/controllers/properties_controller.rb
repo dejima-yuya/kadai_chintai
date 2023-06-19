@@ -19,6 +19,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1/edit
   def edit
+    @property.closest_stations.build
     @closest_stations = @property.closest_stations
   end
 

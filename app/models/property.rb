@@ -7,5 +7,5 @@ class Property < ApplicationRecord
   validates_associated :closest_stations
 
   has_many :closest_stations, inverse_of: :property, dependent: :destroy
-  accepts_nested_attributes_for :closest_stations
+  accepts_nested_attributes_for :closest_stations, reject_if: proc { |attributes|attributes['route_name'].blank? || attributes['route_name'].blank? || attributes['duration'].blank?}
 end
