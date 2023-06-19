@@ -4,7 +4,8 @@ class Property < ApplicationRecord
   validates :address, presence: true
   validates :age, presence: true
   validates :note, presence: true
+  validates_associated :closest_stations
 
-  has_many :closest_stations, inverse_of: :property
+  has_many :closest_stations, inverse_of: :property, dependent: :destroy
   accepts_nested_attributes_for :closest_stations
 end

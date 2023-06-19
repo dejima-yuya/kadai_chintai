@@ -12,7 +12,7 @@ class ClosestStationsController < ApplicationController
 
   # GET /closest_stations/new
   def new
-    @closest_station = ClosestStation.new
+    @closest_stations = ClosestStation.new
   end
 
   # GET /closest_stations/1/edit
@@ -21,15 +21,15 @@ class ClosestStationsController < ApplicationController
 
   # POST /closest_stations or /closest_stations.json
   def create
-    @closest_station = ClosestStation.new(closest_station_params)
+    @closest_stations = ClosestStation.new(closest_station_params)
 
     respond_to do |format|
-      if @closest_station.save
-        format.html { redirect_to @closest_station, notice: "Closest station was successfully created." }
-        format.json { render :show, status: :created, location: @closest_station }
+      if @closest_stations.save
+        format.html { redirect_to @closest_stations, notice: "Closest station was successfully created." }
+        format.json { render :show, status: :created, location: @closest_stations }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @closest_station.errors, status: :unprocessable_entity }
+        format.json { render json: @closest_stations.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,13 +57,13 @@ class ClosestStationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_closest_station
-      @closest_station = ClosestStation.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_closest_station
+    @closest_station = ClosestStation.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def closest_station_params
-      params.require(:closest_station).permit(:route_name, :station_name, :duration)
-    end
+  # Only allow a list of trusted parameters through.
+  def closest_station_params
+    params.require(:closest_station).permit(:route_name, :station_name, :duration)
+  end
 end
